@@ -30,9 +30,10 @@ class StorePermissionRequest extends FormRequest
      */
     public function rules()
     {
+        $idCheck = $this->id ? ','.$this->id.',id' : '';
         return [
-            'name'          => 'required|max:60|unique:'.config('roles.permissionsTable').',name,'.$this->id.',id',
-            'slug'          => 'required|max:60|unique:'.config('roles.permissionsTable').',slug,'.$this->id.',id',
+            'name'          => 'required|max:60|unique:'.config('roles.permissionsTable').$idCheck,
+            'slug'          => 'required|max:60|unique:'.config('roles.permissionsTable').',slug'.$idCheck,
             'description'   => 'nullable|string|max:255',
             'model'         => 'required|string|max:60',
         ];
